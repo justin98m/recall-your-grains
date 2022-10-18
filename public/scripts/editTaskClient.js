@@ -1,0 +1,15 @@
+/*
+  Listen for edit button to be clicked
+      if mutliple tasks are selected
+        inform the user only one task can be selected for editting
+        return
+      if no tasks are selected
+        inform user one task must be selected
+        return
+      Bring selected task to focus
+      Instruct user to hit enter when finished
+      Allow user to enter new task name  on selected task
+      when user clicks enter
+        send current 
+
+  */
