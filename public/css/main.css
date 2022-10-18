@@ -5,5 +5,19 @@
   box-sizing: border-box;
 }
 html{
+  font-family:'Fuzzy Bubbles', cursive;
   background-color: #f7af6a;
+}
+.taskForm{
+
+}
+.task{
+  border: solid white 2px;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#taskTemplate{
+
 }

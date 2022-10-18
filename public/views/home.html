@@ -6,8 +6,24 @@
   <meta name="description" content="Home page">
   <link type="text/css" rel="stylesheet" href="/css/main.css">
 </head>
-<body>
-  
-</body>
-
+  <body>
+    <section class="editTask">
+      <button type="button" name="button">
+        <img src="./media/editIcon.png" alt="Edit Icon">
+      </button>
+      <button type="button" name="button">
+        <img src="./media/trashIcon.png" alt="Trash Icon">
+      </button>
+    </section>
+    <form class="taskForm">
+      <label class="taskNameLabel"for="taskName">Task: </label>
+      <input class="taskName" type="text" name="taskName" placeholder="Enter Task Here">
+      <input type="submit" name="submit" value="Add Task">
+    </form>
+    <section class="task" id="taskTemplate">
+      <input type="checkbox" class="taskCheckbox">
+      <p>Task Name Goes Here </p>
+    </section>
+  </body>
+  <script src="./scripts/addTask.js" type="text/javascript"></script>
 </html>
