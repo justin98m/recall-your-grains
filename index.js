@@ -11,7 +11,8 @@ const __dirname = path.dirname(__filename);
 //what does express() function do??
 const app = express();
 //what does this do?
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 //tell express where static files are
 app.use(express.static(__dirname + '/public'));
 const port = 3000;
@@ -25,9 +26,9 @@ app.get('/',(req,res) => {
 });
 
 //Getting Post Data
-app.post('/addTask',(req,res) =>{
-	let data = {
-	}
+app.post('/addData',(req,res) =>{
+let data = req.body;
+console.log(data);
 
 });
 app.listen(port,() => {

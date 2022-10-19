@@ -8,6 +8,7 @@
 </head>
   <body>
     <section class="editTask">
+      <p class="message"></p>
       <button class="editBtn" type="button" name="button">
         <img class="editImg" src="./media/editIcon.png" alt="Edit Icon">
       </button>
@@ -19,11 +20,18 @@
       <label class="taskNameLabel"for="taskNameInput">Task: </label>
       <input id="taskNameInput" type="text" name="taskNameInput" placeholder="Enter Task Here">
       <input type="submit" class="addTask" name="submit" value="Add Task">
+      <label class="status" id="newTaskStatus"></label>
     </form>
+    <section class="taskContainer" id="taskTemplate">
+      <input type="checkbox" class="taskCheckbox">
+      <p class="task">Task Name Goes Here </p>
+    </section>
     <section class="taskContainer" id="taskTemplate">
       <input type="checkbox" class="taskCheckbox">
       <p class="task">Task Name Goes Here </p>
     </section>
   </body>
   <script src="./scripts/addTask.js" type="module"></script>
+  <script src="./scripts/editTaskClient.js" type="module"></script>
+
 </html>
