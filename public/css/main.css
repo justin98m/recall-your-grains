@@ -8,16 +8,49 @@ html{
   font-family:'Fuzzy Bubbles', cursive;
   background-color: #f7af6a;
 }
-.taskForm{
+.editTask{
+  margin-top: 10px;
+  border: solid white 2px;
+  width: 200px;
+  margin: 10px auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+.editBtn{
 
 }
-.task{
+.editImg{
+  width: 50px;
+  height: 50px;
+}
+.taskForm{
+  border: solid white 2px;
+  width: 400px;
+  margin: 10px auto;
+}
+.taskContainer{
+  width: 70%;
+  height: 60px;
+  margin: 3px auto;
   border: solid white 2px;
   border-radius: 2px;
   display: flex;
+  align-items: center;
   flex-direction: row;
   justify-content: space-between;
 }
 #taskTemplate{
 
+}
+.taskCheckbox{
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+}
+.task{
+  flex-basis: 85%;
+  font-size: 1.3em;
+  border: solid red 2px;
+  text-align: center;
 }
