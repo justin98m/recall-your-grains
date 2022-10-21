@@ -3,6 +3,7 @@ import nunjucks from 'nunjucks';
 import bodyParser from 'body-parser';
 import path from 'path';
 import {fileURLToPath} from 'url';
+import {TaskList,Task} from './scripts/taskList.js';
 
 //path to index file
 const __filename = fileURLToPath(import.meta.url);
@@ -24,12 +25,16 @@ nunjucks.configure('./public/views', {
 app.get('/',(req,res) => {
 	res.render('home.html');
 });
-
 //Getting Post Data
 app.post('/addData',(req,res) =>{
-let data = req.body;
-console.log(data);
-
+	let data = req.body;
+	console.log(data);
 });
+
 app.listen(port,() => {
 });
+let hey = new Task();
+let data = hey.downloadJsonFile();
+
+// data.push({taskName: 'Looper', taskid: 2});
+// hey.updateJsonFile(data);
