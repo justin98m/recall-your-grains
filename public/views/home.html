@@ -7,8 +7,8 @@
   <link type="text/css" rel="stylesheet" href="/css/main.css">
 </head>
   <body>
+    <p class="message"></p>
     <section class="editTask">
-      <p class="message"></p>
       <button class="editBtn" type="button" name="button">
         <img class="editImg" src="./media/editIcon.png" alt="Edit Icon">
       </button>
@@ -22,13 +22,13 @@
       <input type="submit" class="addTask" name="submit" value="Add Task">
       <label class="status" id="newTaskStatus"></label>
     </form>
-    <section class="taskContainer" id="taskTemplate">
+    <section class="taskContainer" id="1">
       <input type="checkbox" class="taskCheckbox">
-      <p class="task">Task Name Goes Here </p>
+      <input type="text" class="taskName" readonly value="Task Goes here">
     </section>
-    <section class="taskContainer" id="taskTemplate">
+    <section class="taskContainer" id="2">
       <input type="checkbox" class="taskCheckbox">
-      <p class="task">Task Name Goes Here </p>
+      <input type="text" class="taskName" readonly value="Task # 2 here">
     </section>
   </body>
   <script src="./scripts/addTask.js" type="module"></script>

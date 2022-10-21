@@ -6,21 +6,20 @@
     updateContent()
 
   */
-function sendData(data,elements){
+const MESSAGE = document.querySelector('.message');
+
+function sendData(data){
     //Object Info https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
     const XHR = new XMLHttpRequest();
-    elements.status.innerHTML = 'Saving in Progress'
-
+    MESSAGE.innerHTML = 'loading'
+    //message is sent
     XHR.addEventListener("load", event => {
       console.log(`sending data to server`);
-      elements.status.innerHTML = 'Saved!';
-      elements.btn.disabled = false;
+      MESSAGE.innerHTML = 'Success';
     });
-
     XHR.addEventListener('error',event => {
       console.log(`There was an error: ${event}` );
-      btn.disabled = false;
-      elements.staus.innerHTML = 'Error Saving';
+      MESSAGE.innerHTML = 'Error';
     });
 
     XHR.open('POST',"http://localhost:3000/addData");

@@ -1,5 +1,5 @@
 import sendData from './clientContactServer.js';
-const MAX_TASKNAME_LENGTH = 75;
+import validTaskName from './helper.js';
 
 let addTaskBtn = document.querySelector('.addTask');
 addTaskBtn.addEventListener('click', addTask);
@@ -10,7 +10,7 @@ function addTask(event){
 
   let taskName = document.querySelector('#taskNameInput').value;
 
-  if(!validTaskName(taskName.length)){
+  if(!validTaskName(taskName)){
     console.log('Invalid Task Name Length');
     return;
   }
@@ -19,13 +19,6 @@ function addTask(event){
     task: taskName,
     action : 'newTask'
   }
-  let elementData = {
-    btn : this,
-    status: document.getElementById('newTaskStatus')
-  }
-  sendData(taskData,elementData);
-}
 
-function validTaskName(taskNameLength){
-  return taskNameLength > 0 && taskNameLength <= MAX_TASKNAME_LENGTH;
+  sendData(taskData);
 }
