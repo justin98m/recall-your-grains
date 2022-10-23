@@ -55,50 +55,52 @@ function addTask(newtask){
 }
 function updateTask(originalTask,updatedTask){
   downloadJsonFile((err,taskList) =>{
+		console.log('running download');
     if(err){
       return console.log(err);
     }
-    if(!taskList.includes(originalTask)){
-        //task does not exist
-        return null
-    }
-    console.log('Old list', taskList);
-    let taskPos = taskList.indexOf(originalTask);
+		console.log('Old list', taskList);
+		console.log('Looking for',originalTask);
+		//Issue using arr functions to find instance of the same object
+		//js objects are compared with mem addresses not values
+		let taskPos = taskList.findIndex(task => task.taskid === originalTask.taskid);
+		//findIndex returns -1 if the id doesnt exist
+		if(taskPos === 1){
+			return console.log(`Task Id: ${originalTask.id} does not exist `);
+		}
+		console.log(taskPos);
     //replace old task with new task
-    taskList.splice(taskPos,1,updateTask);
-    console.log(taskList);
-  //   updateJsonFile(taskList,(err,success) =>{
-  //     console.log('Write has ran');
-  //     if(err){
-  //       return console.log(err);
-  //     }
-  //     return console.log(success);
-  //   })
-  // })
+    taskList.splice(taskPos,1,updatedTask);
+    updateJsonFile(taskList,(err,success) =>{
+      console.log('Write has ran');
+      if(err){
+        return console.log(err);
+      }
+      return console.log(success);
+    })
   })
 }
-let sample = {
-  taskName: "Something else",
-  taskid: 12
-}
-let newsample = {
-  taskName: "really else really ",
-  taskid: 12
-}
 
+function deleteTask(taskToDelete){
+	downloadJsonFile((err,taskList) =>{
+		if(err){
+			return console.log(err);
+		}
+
+		let taskPos = taskList.findIndex(task => task.taskid === taskToDelete.taskid);
+		if(taskPos === -1){
+			return console.log('Task does not exist');
+		}
+		taskList.splice(taskPos,1);
+
+		updateJsonFile(taskList,(err,success) => {
+			if(err){
+				return console.log(err);
+			}
+			return console.log('success');
+		})
+	})
+}
+//deleteTask(newsample);
 //addTask(sample);
-updateTask(sample,newsample);
-
-//then put task in update json
-// updateJsonFile(task,(err) =>{
-//   if(err){
-//     return console.log(err);
-//   }
-//   return
-// })
-
-
-// data[1].taskName = "Task 2";
-// data[1].taskName = "Task 1"
-// data.push({taskName: 'Looper', taskid: 2});
-// hey.updateJsonFile(data);
+//updateTask(sample,newsample);
