@@ -3,7 +3,7 @@ import nunjucks from 'nunjucks';
 import bodyParser from 'body-parser';
 import path from 'path';
 import {fileURLToPath} from 'url';
-import {TaskList,Task} from './scripts/taskList.js';
+import {updateJsonFile,downloadJsonFile} from './scripts/taskList.js';
 
 //path to index file
 const __filename = fileURLToPath(import.meta.url);
@@ -30,11 +30,75 @@ app.post('/addData',(req,res) =>{
 	let data = req.body;
 	console.log(data);
 });
-
 app.listen(port,() => {
 });
-let hey = new Task();
-let data = hey.downloadJsonFile();
 
+let task = {
+  task: 'Drink Coffee',
+  id: '12',
+};
+
+function addTask(newtask){
+  downloadJsonFile((err,taskList) =>{
+    if(err){
+      return console.log(err);
+    }
+    taskList.push(newtask);
+    updateJsonFile(taskList,(err,success) =>{
+      console.log('Write has ran');
+      if(err){
+        return console.log(err);
+      }
+      return console.log(success);
+    })
+  })
+}
+function updateTask(originalTask,updatedTask){
+  downloadJsonFile((err,taskList) =>{
+    if(err){
+      return console.log(err);
+    }
+    if(!taskList.includes(originalTask)){
+        //task does not exist
+        return null
+    }
+    console.log('Old list', taskList);
+    let taskPos = taskList.indexOf(originalTask);
+    //replace old task with new task
+    taskList.splice(taskPos,1,updateTask);
+    console.log(taskList);
+  //   updateJsonFile(taskList,(err,success) =>{
+  //     console.log('Write has ran');
+  //     if(err){
+  //       return console.log(err);
+  //     }
+  //     return console.log(success);
+  //   })
+  // })
+  })
+}
+let sample = {
+  taskName: "Something else",
+  taskid: 12
+}
+let newsample = {
+  taskName: "really else really ",
+  taskid: 12
+}
+
+//addTask(sample);
+updateTask(sample,newsample);
+
+//then put task in update json
+// updateJsonFile(task,(err) =>{
+//   if(err){
+//     return console.log(err);
+//   }
+//   return
+// })
+
+
+// data[1].taskName = "Task 2";
+// data[1].taskName = "Task 1"
 // data.push({taskName: 'Looper', taskid: 2});
 // hey.updateJsonFile(data);
