@@ -1,4 +1,4 @@
-import sendData from './clientContactServer.js';
+import {getData,sendData} from './clientContactServer.js';
 import validTaskName from './helper.js';
 
 let addTaskBtn = document.querySelector('.addTask');

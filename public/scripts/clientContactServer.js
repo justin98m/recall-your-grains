@@ -26,4 +26,10 @@ function sendData(data){
     XHR.setRequestHeader('Content-Type','application/json');
     XHR.send(JSON.stringify(data));
   }
-export default sendData;
+async function getData(){
+  return await fetch('http://localhost:3000/taskList',{
+    method: 'GET'
+  }).then(response => response.json());
+}
+
+export {sendData,getData}

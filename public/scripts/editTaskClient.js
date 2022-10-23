@@ -1,5 +1,5 @@
 import validTaskName from './helper.js';
-import sendData from './clientContactServer.js';
+import {sendData,getData} from './clientContactServer.js';
 const EDITBTN = document.querySelector('.editBtn');
 const MESSAGE = document.querySelector('.message');
 
