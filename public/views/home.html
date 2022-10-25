@@ -12,8 +12,8 @@
       <button class="editBtn" type="button" name="button">
         <img class="editImg" src="./media/editIcon.png" alt="Edit Icon">
       </button>
-      <button class="editBtn" type="button" name="button">
-        <img class="editImg" src="./media/trashIcon.png" alt="Trash Icon">
+      <button class="trashBtn" type="button" name="button">
+        <img class="trashImg" src="./media/trashIcon.png" alt="Trash Icon">
       </button>
     </section>
     <form class="taskForm">
@@ -22,17 +22,17 @@
       <input type="submit" class="addTask" name="submit" value="Add Task">
       <label class="status" id="newTaskStatus"></label>
     </form>
-    <section class="taskContainer" id="1">
-      <input type="checkbox" class="taskCheckbox">
-      <input type="text" class="taskName" readonly value="Task Goes here">
-    </section>
-    <section class="taskContainer" id="2">
-      <input type="checkbox" class="taskCheckbox">
-      <input type="text" class="taskName" readonly value="Task # 2 here">
-    </section>
+    <main class="taskList">
+      <section class="taskContainer template" id="1">
+        <input type="checkbox" class="taskCheckbox">
+        <input type="text" class="taskName" readonly value="Task Goes here">
+      </section>
+    </main>
   </body>
   <script src="./scripts/addTask.js" type="module"></script>
   <script src="./scripts/editTaskClient.js" type="module"></script>
-    <script src="./scripts/fetcher.js" type="module"></script>
+  <script src="./scripts/fetcher.js" type="module"></script>
+  <script src="./scripts/display.js" type="module"></script>
+  <script src="./scripts/deleteTask.js" type="module"></script>
 
 </html>
