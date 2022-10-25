@@ -6,17 +6,17 @@ import fs from 'fs';
 function updateJsonFile(taskList,cb){
   let taskListJson = JSON.stringify(taskList);
 
-  fs.writeFile('../taskList.json',taskListJson, (err,data) =>{
+  fs.writeFile('./taskList.json',taskListJson, (err,data) =>{
       if(err){
         return cb(err,null);
       }
-      return(null,"File written");
+      return cb(null,"File written");
   })
 }
 function downloadJsonFile(cb){
 //why is fs.readFile not equal to the callbacks return val
 //how do I get it to evaluate as any val?
-  fs.readFile('../taskList.json',(err,data) => {
+  fs.readFile('./taskList.json',(err,data) => {
     if(err){
       return cb(err,null);
     }

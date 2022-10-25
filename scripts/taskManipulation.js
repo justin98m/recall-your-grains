@@ -1,21 +1,26 @@
 import {downloadJsonFile,updateJsonFile} from './json-functions.js';
 
-function addTask(newtask){
+function addTask(newtask,cb){
   downloadJsonFile((err,taskList) =>{
     if(err){
       return console.log(err);
     }
+    console.log('ADD TASK');
+    console.log(newtask);
+    newtask.taskid =  Math.floor(Math.random() * 100000) ;
+
     taskList.push(newtask);
+
     updateJsonFile(taskList,(err,success) =>{
       console.log('Write has ran');
       if(err){
-        return console.log(err);
+        return cb(err,null);
       }
-      return console.log(success);
+      cb(null,err);
     })
   })
 }
-function updateTask(originalTaskid,updatedTask){
+function updateTask(originalTaskid,updatedTask,cb){
   downloadJsonFile((err,taskList) =>{
 		console.log('running download');
     if(err){
@@ -24,45 +29,45 @@ function updateTask(originalTaskid,updatedTask){
 		//Issue using arr functions to find instance of the same object
 		//js objects are compared with mem addresses not values
 		let taskPos = taskList.findIndex(task => task.taskid === originalTaskid);
-		//findIndex returns -1 if the id doesnt exist
+    //findIndex returns -1 if the id doesnt exist
 		if(taskPos === -1){
 			return console.log(`Task Id: ${originalTaskid} does not exist `);
 		}
-		console.log(taskPos);
+    updatedTask.taskid = originalTaskid;
     //replace old task with new task
     taskList.splice(taskPos,1,updatedTask);
     updateJsonFile(taskList,(err,success) =>{
       console.log('Write has ran');
       if(err){
-        return console.log(err);
+        return cb(null,err);
       }
-      return console.log(success);
+      return cb(null,success)
     })
   })
 }
 
-function deleteTask(taskid){
+function deleteTask(taskids,cb){
 	downloadJsonFile((err,taskList) =>{
 		if(err){
 			return console.log(err);
 		}
-    console.log(taskList);
-		let taskPos = taskList.findIndex(task => task.taskid === taskid);
-    console.log(taskList[0].taskid);
-    console.log(taskid);
-		if(taskPos === -1){
-			return console.log('Task does not exist');
-		}
-		taskList.splice(taskPos,1);
-
-		updateJsonFile(taskList,(err,success) => {
+    taskids.forEach(deleteid => {
+      let taskPos = taskList.findIndex(task => task.taskid === deleteid);
+      if(taskPos === -1){
+        return console.log('Task does not exist');
+      }
+      taskList.splice(taskPos,1);
+    });
+  updateJsonFile(taskList,(err,success) => {
 			if(err){
-				return console.log(err);
+				return cb(err,null);
 			}
-			return console.log('success');
+			return cb(null,err);
 		})
 	})
 }
+
+
 
 export {
   deleteTask,

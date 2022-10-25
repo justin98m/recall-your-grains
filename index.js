@@ -37,15 +37,24 @@ app.get('/taskList',(req,res) =>{
 //Getting Post Data
 app.post('/addData',(req,res) =>{
 	let data = req.body;
-	console.log(data);
+	switch(data.action){
+		case 'addTask':
+		addTask({taskName: data.taskName},(err,result) => res.send('Data added'));
+		break;
+
+		case 'updateTask':
+			updateTask(data.taskid,{taskName: data.taskName},(err,result) => {
+				res.send('Data Added');
+			});
+			break;
+
+		case 'deleteTask':
+			deleteTask(data.taskids,(err,result) => res.send('Data Deleted'));
+	}
 });
 app.listen(port,() => {
 });
 
-let task = {
-  task: 'Drink Coffee',
-  id: '12',
-};
 
 //deleteTask(newsample);
 //addTask(sample);
