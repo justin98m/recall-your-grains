@@ -1,17 +1,7 @@
-import validTaskName from './helper.js';
+import {selectedTasks,validTaskName} from './helper.js';
 import {sendData,getData} from './clientContactServer.js';
 const EDITBTN = document.querySelector('.editBtn');
 const MESSAGE = document.querySelector('.message');
-
-//return all the task containers with a checked checkbox
-function selectedTasks(){
-  //returns array of task containers
-  let tasks = Object.values(document.getElementsByClassName('taskContainer'));
-  return tasks.filter(task => {
-    let taskStatus = task.querySelector('.taskCheckbox');
-    return taskStatus.checked;
-  })
-}
 
 EDITBTN.addEventListener('click',(event)=>{
   let selectedTaskList = selectedTasks();
@@ -36,17 +26,19 @@ EDITBTN.addEventListener('click',(event)=>{
   //remove event listener
 })
 function editTask(event){
+  event.target.readOnly = true;
   let taskName = event.target.value;
-  let taskid = event.target.id;
+  let taskid = Number(event.target.parentNode.id)
   //validate task
   if(!validTaskName(taskName)){
     return MESSAGE.innerHTML = 'Invalid Task Name';
   }
   let data = {
     taskName : taskName,
-    action: editTask,
-    taskId : taskid
+    action: 'updateTask',
+    taskid : taskid
   }
+  console.log(data);
   sendData(data)
 
 }

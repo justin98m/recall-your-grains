@@ -1,24 +1,25 @@
 import {getData,sendData} from './clientContactServer.js';
-import validTaskName from './helper.js';
+import {validTaskName} from './helper.js';
+import {updateDisplay} from './display.js';
 
 let addTaskBtn = document.querySelector('.addTask');
 addTaskBtn.addEventListener('click', addTask);
-function addTask(event){
+async function addTask(event){
   //dont actually submit anything yet
   event.preventDefault();
-  this.disabled = true;
-
   let taskName = document.querySelector('#taskNameInput').value;
-
   if(!validTaskName(taskName)){
     console.log('Invalid Task Name Length');
     return;
   }
 
   let taskData = {
-    task: taskName,
-    action : 'newTask'
+    taskName: taskName,
+    action : 'addTask'
   }
 
-  sendData(taskData);
+  await sendData(taskData)
+  .then(response => console.log("response",response))
+  .then(x => updateDisplay());//why does this run after the previous then
+  //but not .then(updateDisplay());
 }
