@@ -6,7 +6,6 @@ const TASK_LIST_CONTAINER = document.querySelector('.taskList');
 const TEMPLATE_TASK = document.querySelector('.template').cloneNode(true);
 
 function removeTaskList(){
-  //having issues acessing array of task
   if(TASK_LIST_CONTAINER.querySelectorAll('.taskContainer').length !== 0){
     TASK_LIST_CONTAINER.querySelectorAll('.taskContainer').forEach(task => {
       task.remove()
@@ -16,7 +15,6 @@ function removeTaskList(){
 }
 
 export async function updateDisplay(){
-  console.log('updating display running');
   removeTaskList();
   //get data is a async functon
   let taskList =  await getData();
@@ -26,7 +24,6 @@ export async function updateDisplay(){
     taskList.forEach( task => {
         //give task its own node with correct attributes
         let taskNode = TEMPLATE_TASK.cloneNode(true);
-        taskNode.removeAttribute('.template');
         taskNode.querySelector('.taskName').setAttribute('value',task.taskName);
         taskNode.id = task.taskid
         //add task to dom

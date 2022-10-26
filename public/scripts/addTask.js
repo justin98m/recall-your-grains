@@ -19,7 +19,6 @@ async function addTask(event){
   }
 
   await sendData(taskData)
-  .then(response => console.log("response",response))
-  .then(x => updateDisplay());//why does this run after the previous then
-  //but not .then(updateDisplay());
+  .then(response => updateDisplay());
+
 }

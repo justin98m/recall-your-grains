@@ -5,8 +5,6 @@ function addTask(newtask,cb){
     if(err){
       return console.log(err);
     }
-    console.log('ADD TASK');
-    console.log(newtask);
     newtask.taskid =  Math.floor(Math.random() * 100000) ;
 
     taskList.push(newtask);
@@ -16,7 +14,7 @@ function addTask(newtask,cb){
       if(err){
         return cb(err,null);
       }
-      cb(null,err);
+      cb(null,taskList);
     })
   })
 }

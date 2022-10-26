@@ -6,7 +6,7 @@
 }
 html{
   font-family:'Fuzzy Bubbles', cursive;
-  background-color: #f7af6a;
+  background-color: #74b72e;
 }
 .editTask{
   margin-top: 10px;
@@ -26,8 +26,14 @@ html{
 }
 .taskForm{
   border: solid white 2px;
-  width: 400px;
+  width: 30%;
+  font-size: 20px;
   margin: 10px auto;
+}
+.addTask{
+  border-radius: 3px;
+  height: 30px;
+  width: 100px;
 }
 .taskContainer{
   width: 70%;
@@ -40,17 +46,15 @@ html{
   flex-direction: row;
   justify-content: space-between;
 }
-#taskTemplate{
-
-}
 .taskCheckbox{
   width: 40px;
   height: 40px;
   margin-left: 10px;
 }
-.task{
-  flex-basis: 85%;
+.taskName{
+  flex-basis: 70%;
   font-size: 1.3em;
-  border: solid red 2px;
+  border: solid white 2px;
   text-align: center;
+  margin-right: 10%;  
 }

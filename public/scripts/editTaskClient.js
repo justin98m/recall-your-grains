@@ -42,6 +42,3 @@ function editTask(event){
   sendData(data)
 
 }
-
-function updateContent(){
-}

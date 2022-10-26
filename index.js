@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 //what does express() function do??
 const app = express();
-//what does this do?
+//what does this do exactukt ?
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 //tell express where static files are
@@ -39,7 +39,7 @@ app.post('/addData',(req,res) =>{
 	let data = req.body;
 	switch(data.action){
 		case 'addTask':
-		addTask({taskName: data.taskName},(err,result) => res.send('Data added'));
+		addTask({taskName: data.taskName},(err,result) => res.send(result));
 		break;
 
 		case 'updateTask':
@@ -52,6 +52,9 @@ app.post('/addData',(req,res) =>{
 			deleteTask(data.taskids,(err,result) => res.send('Data Deleted'));
 	}
 });
+// app.put('/addData'(req,res)=>{
+//
+// })
 app.listen(port,() => {
 });
 
