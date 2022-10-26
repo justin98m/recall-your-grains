@@ -9,16 +9,13 @@ import {updateTask,deleteTask,addTask} from './scripts/taskManipulation.js'
 const __filename = fileURLToPath(import.meta.url);
 //path to head server directory  of index file
 const __dirname = path.dirname(__filename);
-//what does express() function do??
 const app = express();
-//what does this do exactukt ?
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 //tell express where static files are
 app.use(express.static(__dirname + '/public'));
 const port = 3000;
 nunjucks.configure('./public/views', {
-	//what is this?
 	autoescape: true,
 	express: app
 });
@@ -52,13 +49,6 @@ app.post('/addData',(req,res) =>{
 			deleteTask(data.taskids,(err,result) => res.send('Data Deleted'));
 	}
 });
-// app.put('/addData'(req,res)=>{
-//
-// })
+
 app.listen(port,() => {
 });
-
-
-//deleteTask(newsample);
-//addTask(sample);
-//updateTask(sample,newsample);
