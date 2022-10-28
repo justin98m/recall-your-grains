@@ -19,36 +19,37 @@ nunjucks.configure('./public/views', {
 	autoescape: true,
 	express: app
 });
+//get tasks from json file and render page with the task object
 app.get('/',(req,res) => {
-	res.render('home.html');
-});
-app.get('/taskList',(req,res) =>{
-	console.log('im running');
-	res.sendFile(__dirname + '/taskList.json',{},(err) =>{
+	downloadJsonFile((err,result) => {
 		if(err){
-			return console.log(err);
+			return console.log('Err: ',err);
 		}
-		console.log(__dirname + '/taskList.json');
-	});
+		console.log(result);
+		let data;
+		res.render('home.html', data = {
+			taskList : result
+		});
+	})
 });
 //Getting Post Data
-app.post('/addData',(req,res) =>{
+app.post('/tasks',(req,res) =>{
 	let data = req.body;
-	switch(data.action){
-		case 'addTask':
-		addTask({taskName: data.taskName},(err,result) => res.send(result));
-		break;
-
-		case 'updateTask':
-			updateTask(data.taskid,{taskName: data.taskName},(err,result) => {
-				res.send('Data Added');
-			});
-			break;
-
-		case 'deleteTask':
-			deleteTask(data.taskids,(err,result) => res.send('Data Deleted'));
-	}
+	console.log('add task');
+	addTask({taskName: data.taskName},(err,result) => res.send(JSON.stringify(result)));
 });
+app.delete('/tasks',(req,res) => {
+	let data = req.body;
+	//deletes passsed in ids and returns succesfully deleted ids
+	deleteTask(data.taskids,(err,result) => res.send(JSON.stringify(result)));
+})
+app.put('/tasks',(req,res) => {
+	let data = req.body;
+	console.log('update taks');
+	updateTask(data.taskid,{taskName: data.taskName},(err,result) => {
+		res.send('Data Added');
+	});
+})
 
 app.listen(port,() => {
 });

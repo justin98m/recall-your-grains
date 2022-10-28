@@ -25,15 +25,20 @@
       <label class="status" id="newTaskStatus"></label>
     </form>
     <main class="taskList">
-      <section class="taskContainer template" id="1">
+      <section class="taskContainer template">
         <input type="checkbox" class="taskCheckbox">
-        <input type="text" class="taskName" readonly value="Task Goes here">
+        <input type="text" class="taskName" readonly value="">
       </section>
+      {% for task in taskList %}
+      <section class="taskContainer" id="{{task.taskid}}">
+        <input type="checkbox" class="taskCheckbox">
+        <input type="text" class="taskName" readonly value="{{task.taskName}}">
+      </section>
+      {% endfor %}
     </main>
   </body>
   <script src="./scripts/addTask.js" type="module"></script>
   <script src="./scripts/editTaskClient.js" type="module"></script>
-  <script src="./scripts/display.js" type="module"></script>
   <script src="./scripts/deleteTask.js" type="module"></script>
 
 </html>

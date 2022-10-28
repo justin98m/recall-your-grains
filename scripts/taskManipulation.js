@@ -14,7 +14,7 @@ function addTask(newtask,cb){
       if(err){
         return cb(err,null);
       }
-      cb(null,taskList);
+      cb(null,newtask);
     })
   })
 }
@@ -49,18 +49,21 @@ function deleteTask(taskids,cb){
 		if(err){
 			return console.log(err);
 		}
-    taskids.forEach(deleteid => {
+    //remove ids and make array containing successfully deleted ids
+    let deletedIds = taskids.map(deleteid => {
       let taskPos = taskList.findIndex(task => task.taskid === deleteid);
       if(taskPos === -1){
-        return console.log('Task does not exist');
+        return  null;
       }
       taskList.splice(taskPos,1);
+      return deleteid;
     });
+    console.log('deleted: ',deletedIds);
   updateJsonFile(taskList,(err,success) => {
 			if(err){
 				return cb(err,null);
 			}
-			return cb(null,err);
+			return cb(null,deletedIds);
 		})
 	})
 }

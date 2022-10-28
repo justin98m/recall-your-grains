@@ -33,6 +33,9 @@ html{
   flex-direction: row;
   justify-content: space-around;
 }
+.taskList .template{
+  display: none;
+}
 .addTask{
   border-radius: 3px;
   height: 30px;

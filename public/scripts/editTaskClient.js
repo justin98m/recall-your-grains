@@ -1,5 +1,5 @@
 import {selectedTasks,validTaskName} from './helper.js';
-import {sendData,getData} from './clientContactServer.js';
+import {sendData} from './clientContactServer.js';
 const EDITBTN = document.querySelector('.editBtn');
 const MESSAGE = document.querySelector('.message');
 
@@ -20,10 +20,6 @@ EDITBTN.addEventListener('click',(event)=>{
   taskNameInput.select();
   //wait for change
   taskNameInput.addEventListener('change',editTask);
-      //validate task
-  //selectedTaskList[0].querySelector('#taskNameInput');
-
-  //remove event listener
 })
 function editTask(event){
   event.target.readOnly = true;
@@ -35,10 +31,8 @@ function editTask(event){
   }
   let data = {
     taskName : taskName,
-    action: 'updateTask',
     taskid : taskid
   }
-  console.log(data);
-  sendData(data)
+  sendData(data,'PUT')
 
 }
